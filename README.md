@@ -1,6 +1,6 @@
 # slip-stream
 
-[RFC 1055 (SLIP)](https://tools.ietf.org/html/rfc1055) compliant endoding and decoding streams for Node.js
+[RFC 1055 (SLIP)](https://tools.ietf.org/html/rfc1055) compliant encoding and decoding streams for Node.js
 
 ## Usage
 
