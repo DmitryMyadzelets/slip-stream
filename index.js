@@ -23,5 +23,4 @@ const decoder = () => new Transform({
   }
 })
 
-module.exports.encoder = encoder
-module.exports.decoder = decoder
+module.exports = { encoder, decoder }
