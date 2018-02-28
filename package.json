@@ -1,0 +1,29 @@
+{
+  "name": "slip-stream",
+  "version": "1.0.0",
+  "description": "RFC 1055 (SLIP) compliant endoder and decoder streams for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitryMyadzelets/slip-stream.git"
+  },
+  "keywords": [
+    "RFC",
+    "1055",
+    "SLIP",
+    "decode",
+    "encode",
+    "node",
+    "stream",
+    "transform"
+  ],
+  "author": "Dmitry Myadzelets",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DmitryMyadzelets/slip-stream/issues"
+  },
+  "homepage": "https://github.com/DmitryMyadzelets/slip-stream#readme"
+}
