@@ -5,7 +5,7 @@
 ## Usage
 
 ```js
-const slip = require('slip-stream')
+const slip = require('@dmitrymyadzelets/slip-stream')
 
 const encoder = slip.encoder()
 const decoder = slip.decoder()

@@ -1,18 +1,17 @@
 {
-  "name": "slip-stream",
+  "name": "@dmitrymyadzelets/slip-stream",
   "version": "1.0.0",
   "description": "RFC 1055 (SLIP) compliant endoder and decoder streams for Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tests"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DmitryMyadzelets/slip-stream.git"
   },
   "keywords": [
-    "RFC",
-    "1055",
+    "RFC 1055",
     "SLIP",
     "decode",
     "encode",
