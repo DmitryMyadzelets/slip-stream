@@ -1,6 +1,6 @@
 {
   "name": "@dmitrymyadzelets/slip-stream",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "RFC 1055 (SLIP) compliant endoder and decoder streams for Node.js",
   "main": "index.js",
   "scripts": {
