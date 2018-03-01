@@ -5,19 +5,20 @@ function callback (cb) {
   return (typeof cb === 'function') ? cb : () => {}
 }
 
-function slice (chunk, start, end) {
-  this.push(chunk.slice(start, end))
-}
-
-function add (data) {
-  this.push(data)
+const proto = {
+  slice: function (chunk, start, end) {
+    this.push(chunk.slice(start, end))
+  },
+  add: function (data) {
+    this.push(data)
+  }
 }
 
 const encoder = () => {
-  let _slice, _add
+  let slice, add
   const stream = new Transform({
     transform: function (chunk, enc, cb) {
-      encode(chunk, _slice, _add)
+      encode(chunk, slice, add)
       cb()
     },
     flush: function (cb) {
@@ -25,21 +26,22 @@ const encoder = () => {
       cb()
     }
   })
-  _slice = slice.bind(stream)
-  _add = add.bind(stream)
+  slice = proto.slice.bind(stream)
+  add = proto.add.bind(stream)
   return stream
 }
 
 const decoder = (eof) => {
-  let _slice, _add
+  let slice, add
   const stream = new Transform({
     transform: function (chunk, enc, cb) {
-      decode(chunk, _slice, _add, callback(eof))
+      decode(chunk, slice, add, eof)
       cb()
     }
   })
-  _slice = slice.bind(stream)
-  _add = add.bind(stream)
+  slice = proto.slice.bind(stream)
+  add = proto.add.bind(stream)
+  eof = callback(eof).bind(stream)
   return stream
 }
 
