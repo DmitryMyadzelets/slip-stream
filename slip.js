@@ -31,21 +31,21 @@ function encode (chunk, slice, add) {
   for (start = 0, end = 0; end < chunk.length; end += 1) {
     switch (chunk[end]) {
       case ESC:
-        (end > start) && slice(start, end)
+        (end > start) && slice(chunk, start, end)
         add(buf.escesc)
         start = end + 1
         break
       case END:
-        (end > start) && slice(start, end)
+        (end > start) && slice(chunk, start, end)
         add(buf.escend)
         start = end + 1
         break
     }
   }
-  (end > start) && slice(start, end)
+  (end > start) && slice(chunk, start, end)
 }
 
-function decode (chunk, slice, add) {
+function decode (chunk, slice, add, eof) {
   let start, end
   let esc = false
   for (start = 0, end = 0; end < chunk.length; end += 1) {
@@ -57,13 +57,14 @@ function decode (chunk, slice, add) {
         esc && (start = end + 1) && add(buf.esc)
         break
       case END:
-        (end > start) && slice(start, end)
+        (end > start) && slice(chunk, start, end)
         start = end + 1
+        eof()
         break
     }
     esc = chunk[end] === ESC
   }
-  (end > start) && slice(start, end)
+  (end > start) && slice(chunk, start, end)
 }
 
 module.exports = { encode, decode }

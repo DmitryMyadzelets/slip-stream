@@ -1,8 +1,9 @@
 const assert = require('./assert')
 const slip = require('..')
 
+let eof = false
 const encoder = slip.encoder()
-const decoder = slip.decoder()
+const decoder = slip.decoder(() => eof = true)
 
 const input = [1, 219, 2, 192, 3, 4]
 const encoded = []
@@ -24,6 +25,7 @@ decoder
     assert.notDeepStrictEqual(input, encoded)
     // The ouput is equal to the input
     assert.deepStrictEqual(input, decoded)
+    assert.equal(eof, true)
   })
 
 encoder.pipe(decoder)
