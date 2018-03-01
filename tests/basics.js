@@ -25,6 +25,7 @@ decoder
     assert.notDeepStrictEqual(input, encoded)
     // The ouput is equal to the input
     assert.deepStrictEqual(input, decoded)
+    // The end callback has been called
     assert.equal(eof, true)
   })
 
