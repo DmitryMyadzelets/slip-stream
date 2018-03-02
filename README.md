@@ -2,42 +2,23 @@
 
 [RFC 1055 (SLIP)](https://tools.ietf.org/html/rfc1055) compliant encoding and decoding streams for Node.js
 
-## Usage
+## Why
+
+Think about sending files as binary data over a WebSocket. The problem is to detect the end of the data. The SLIP solves it, and the streams just make it simple.
+
+The client could be (preparation is omitted):
 
 ```js
-const slip = require('@dmitrymyadzelets/slip-stream')
-
-const encoder = slip.encoder()
-const decoder = slip.decoder()
-
-const input = [1, 219, 2, 192, 3, 4]
-const encoded = []
-const decoded = []
-
-encoder
-  .on('data', data => encoded.push.apply(encoded, data))
-  .on('end', () => console.log('encoded', encoded))
-
-decoder
-  .on('data', data => decoded.push.apply(decoded, data))
-  .on('end', () => console.log('decoded', decoded))
-
-encoder.pipe(decoder)
-
-encoder.write(Buffer.from(input))
-encoder.end()
-
-console.log('input  ', input)
-
+file.pipe(encoder).pipe(websocket)
 ```
 
-Output:
+And the server:
 
-```sh
-input   [ 1, 219, 2, 192, 3, 4 ]
-encoded [ 1, 219, 221, 2, 219, 220, 3, 4, 192 ]
-decoded [ 1, 219, 2, 192, 3, 4 ]
+```js
+websocket.pipe(decoder).pipe(file)
 ```
+
+The tests contain [a complete example](tests/websocket.js).
 
 ## License
 MIT
